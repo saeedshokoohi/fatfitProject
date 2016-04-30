@@ -1,0 +1,41 @@
+<ion-navbar *navbar>
+    <ion-title class="titlebar">
+        زن یا مرد
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+    <ion-nav-view>
+<!--STEP 1-->
+        <ion-view title="step 1">
+            <div  class="image gender-bgimage" >
+      
+       </div>
+            <div *ngIf="data.step==1"  >
+                  
+             
+                <br>
+                <br>
+                <br>
+                <button large (click)='setmale()'>
+        <img src="/build/img/male.png" >
+        مرد هستم!
+    </button>
+                <br>
+                <br>
+
+                <button large (click)='setfemale()'>
+            <img src="/build/img/female.png" >
+        زن هستم!
+    </button>
+
+            </div>
+<!--STEP 2-->
+
+          
+        </ion-view>
+        <!--<ion-view title="step2" >
+      
+         </ion-view>-->
+    </ion-nav-view>
+</ion-content>

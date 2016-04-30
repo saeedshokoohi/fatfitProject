@@ -1,0 +1,48 @@
+<ion-navbar *navbar>
+    <ion-title class="titlebar">
+  اندازه دور گردن
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+     <div *ngIf="data.gender" class="image male-waistimage" ></div>
+      <div *ngIf="!data.gender" class="image female-waistimage" ></div>
+            <br>
+            <br>
+            <br>
+
+            <!--STEP 3-->
+
+            <ion-list>
+  
+     <ion-item>
+                    <ion-label fixed>
+                        دور شکم 
+                        (cm)
+                        </ion-label>
+                    <ion-input text-center  type="number" required [(ngModel)]="data.waist"></ion-input>
+                    <!--<ion-label floating>cm</ion-label>-->
+                </ion-item>
+          
+            </ion-list>
+            <p *ngIf="data.gender" >
+            اندازه گیری برای آقایون :
+            <br>
+              بطور ریلکس بایستید (شکم و داخل ندید!) . درست از بالای ناف متر نواری رو بطور افقی به دور شکم قرار دهید .
+              دقت کنید که متر با شکم تماس داشته باشد اما فشرده نشود .
+                     </p> 
+                     <p *ngIf="!data.gender">
+                         اندازه گیری برای خانم ها :
+                         <br>
+                      
+              بطور ریلکس بایستید (شکم و داخل ندید!) . 
+              باریک ترین نقطه شکم رو پیدا کنید و متر نواری رو بطور افقی به دور شکم قرار دهید .
+                     </p>
+           <br>
+             <button large (click)="gotoNextStep()" >
+            <!--<img src="/build/img/female.png" >-->
+            <!--<ion-icon name="ion-arrow-right-b" />-->
+      خوب بعد!
+    </button>
+         
+</ion-content>

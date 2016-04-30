@@ -1,0 +1,39 @@
+<ion-navbar *navbar>
+    <ion-title class="titlebar">
+  اندازه دور گردن
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+      <div *ngIf="!data.gender" class="image female-hipimage" ></div>
+            <br>
+            <br>
+            <br>
+
+            <!--STEP 3-->
+
+            <ion-list>
+  
+     <ion-item>
+                    <ion-label fixed>
+                       دور کمر
+                        (cm)
+                        </ion-label>
+                    <ion-input text-center  type="number" required [(ngModel)]="data.hip"></ion-input>
+                    <!--<ion-label floating>cm</ion-label>-->
+                </ion-item>
+          
+            </ion-list>
+          
+                     <p *ngIf="!data.gender">
+                 
+                 ایستاده و پاهارا بهم بچسبانید . عریض ترین بخش از دور باسن خود را با متر نواری اندازه بگیرید    .
+                 
+                     </p>
+           <br>
+             <button large (click)="gotoNextStep()" >
+        
+      خوب بعد!
+    </button>
+         
+</ion-content>

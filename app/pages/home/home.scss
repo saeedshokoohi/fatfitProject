@@ -1,0 +1,71 @@
+.titlebar
+{
+    direction: rtl;
+    align-content: center;
+    float: right;
+}
+.home {
+    font-family: yekan;
+    direction: rtl;
+    align-content: center;
+    text-align: center;
+     background-color:rgb(238,235,226);
+ //   background-image: url('/build/img/page1-bg.png');
+  
+}
+.navigateButtons
+{
+    align-content: center;
+    
+}
+.mainBtn
+{
+    margin-top: 20px;
+}
+.image
+{
+    background-repeat: no-repeat;
+     width: 99%;
+    height: 40%;
+    background-size: cover;
+}
+.homeimage
+{
+    background-image: url('../img/page1-bg.png');
+}
+.gender-bgimage
+{
+    background-image: url('../img/gender-bg.jpg');
+  
+}
+
+.step2image
+{
+    background-image: url('../img/step2.jpg');
+}
+.male-neckimage
+{
+    background-image: url('../img/male-neck.jpg');
+}
+.female-neckimage
+{
+    background-image: url('../img/female-neck.jpg');
+}
+.male-waistimage
+{
+    background-image: url('../img/male-waist.jpg');
+}
+.female-waistimage
+{
+    background-image: url('../img/female-waist.jpg');
+}
+.female-hipimage
+{
+    background-image: url('../img/female-hip.jpg');
+}
+.body-fat-ranges-adultsimage
+{
+    background-image: url('../img/body-fat-ranges-adults.jpg');
+}
+
+

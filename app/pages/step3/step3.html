@@ -1,0 +1,48 @@
+<ion-navbar *navbar>
+    <ion-title class="titlebar">
+  اندازه دور گردن
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+  <div *ngIf="data.gender" class="image male-neckimage" ></div>
+   <div *ngIf="!data.gender" class="image femalemale-neckimage" ></div>
+            <br>
+            <br>
+            <br>
+
+            <!--STEP 3-->
+
+            <ion-list>
+  
+     <ion-item>
+                    <ion-label fixed>اندازه دور گردن 
+                        (cm)
+                        </ion-label>
+                    <ion-input text-center lenght='2' type="number" required [(ngModel)]="data.neck"></ion-input>
+                    <!--<ion-label floating>cm</ion-label>-->
+                </ion-item>
+          
+            </ion-list>
+            <p *ngIf="data.gender" >
+            اندازه گیری برای آقایون :
+            <br>
+              از متر خیاطی استفاده کنید . متر را بصورت افقی در زیر سیب آدم  چسبیده به پوست گردن و بدون فشار 
+                     قرار دهید .
+                     اگر در پیدا کردن سیب آدم مشکل دارید. سر خود را به عقب دهید و با انگشت برجستگی جلو گردن را پیدا کنید . متر باید از زیر این برجستگی بگذرد.
+                     </p> 
+                     <p *ngIf="!data.gender">
+                         اندازه گیری برای خانم ها :
+                         <br>
+                         از متر خیاطی استفاده کرده و آن را بطور افق درست در زیر حنجره خود قرار دهید .
+                         برای پیدا کردن دقیق حنجره انگشتان خود را در جلوی گردن خود قرار دهید. بعد آب دهانتون رو قورت بدهید . بعد از قورت دادن یک حفره رو حس میکنید .
+                         آن نقطه حنجره است و باید از زیر آن اندازه گیری کنید . 
+                     </p>
+           <br>
+             <button large (click)="gotoNextStep()" >
+            <!--<img src="/build/img/female.png" >-->
+            <!--<ion-icon name="ion-arrow-right-b" />-->
+      خوب بعد!
+    </button>
+         
+</ion-content>

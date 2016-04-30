@@ -1,0 +1,43 @@
+<ion-navbar *navbar>
+    <ion-title class="titlebar">
+        قد و وزن
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+    <form>
+    <div class="image step2image" ></div>
+
+            <br>
+            <br>
+            <br>
+
+            <!--STEP 2-->
+
+            <ion-list>
+  
+     <ion-item>
+                    <ion-label fixed>سن </ion-label>
+                    <ion-input text-center type="number" required [(ngModel)]="data.age"></ion-input>
+                    <!--<ion-label floating>cm</ion-label>-->
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>وزن (کیلوگرم) </ion-label>
+                    <ion-input text-center type="number" required [(ngModel)]="data.weight"></ion-input>
+                    <!--<ion-label floating>cm</ion-label>-->
+                </ion-item>
+
+                <ion-item>
+                    <ion-label fixed>قد (سانتی متر)</ion-label>
+                    <ion-input text-center type="number" required [(ngModel)]="data.height"  ></ion-input>
+                    <!--<ion-label fixed>Kg</ion-label>-->
+                </ion-item>
+
+            </ion-list>
+             <button large (click)="gotoNextStep()" >
+            <!--<img src="/build/img/female.png" >-->
+            <!--<ion-icon name="ion-arrow-right-b" />-->
+      خوب بعد!
+    </button>
+         </form>
+</ion-content>
