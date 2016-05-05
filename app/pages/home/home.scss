@@ -67,5 +67,13 @@
 {
     background-image: url('../img/body-fat-ranges-adults.jpg');
 }
+.gauge-hand {
+    fill: #1E98E4;
+      -webkit-transition: 4s ease-in-out;
+    -moz-transition: 4s ease-in-out;
+    -o-transition: 4s ease-in-out;
+    transition: 4s ease-in-out;
+}
+
 
 

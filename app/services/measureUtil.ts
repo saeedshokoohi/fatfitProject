@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core'
 import {DataModel} from '../model/datamodel'
+import {BodyResult} from '../model/bodyResult'
 
 
 @Injectable()
@@ -12,9 +13,9 @@ class MeasureUtil {
         
     };
     
-   public  measureBodyFat(data:DataModel)
+   public  measureBodyFat(data:DataModel):BodyResult
     {
-        let result:number;
+        let result:BodyResult;
         var ageGroups=[
                        {groupnumber:1, min:0,max:20},
                        {groupnumber:2, min:21,max:25},
@@ -59,13 +60,13 @@ class MeasureUtil {
         if(data.gender)
         {
              console.log(data);
-            result=this.maleFat(data.height,data.neck,data.waist);
+            result.fatPercentage=this.maleFat(data.height,data.neck,data.waist);
         } 
         else
         {
             console.log(data);
        //      result=this.maleFat(data.height,data.neck,data.waist);
-             result=this.femaleFat(data.height,data.neck,data.waist,data.hip);
+             result.fatPercentage=this.femaleFat(data.height,data.neck,data.waist,data.hip);
         }
         debugger;
       var myGroupAge= ageGroups.filter(function(el){
@@ -73,12 +74,15 @@ class MeasureUtil {
         });
         var targetGroup;
         if(data.gender)
-        targetGroup=bodyFatForMan.filter(function(el){return el.ageGroup==myGroupAge[0].groupnumber});
+        targetGroup=bodyFatForMan.find(function(el){return el.ageGroup==myGroupAge[0].groupnumber});
         else
-        targetGroup=bodyFatForWoman.filter(function(el){return el.ageGroup==myGroupAge[0].groupnumber});
+        targetGroup=bodyFatForWoman.find(function(el){return el.ageGroup==myGroupAge[0].groupnumber});
         
-       var finalPlace= targetGroup[0].list.filter(function(el){return el.from<result && el.to>=result});
-        return result+finalPlace[0];
+       var finalPlace= targetGroup.list.filter(function(el){return el.from<result && el.to>=result});
+       result.bodyGroup=targetGroup;;
+       var finalroup= fatGroups.find(function(el){return el.groupnumber==finalPlace.fatGroup});
+        result.fatStatusDescription=finalroup.name;
+        return result;
         
     };
     //%Fat=495/(1.0324-.19077(log(abdomen-neck))+.15456(log(height)))-450 

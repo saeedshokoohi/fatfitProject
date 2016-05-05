@@ -6,14 +6,23 @@
 
 <ion-content class="home">  
    <ion-view >
-       
+     
+      
        <div  class="image homeimage" >
       
        </div>
+        <button (click)="makeGauge()" light class="mainBtn" large >  
+      <!--<ion-icon name="checkmark-circle"></ion-icon>-->
+Test
+         </button>
      <button (click)="gotonextpage()" light class="mainBtn" large >  
       <!--<ion-icon name="checkmark-circle"></ion-icon>-->
     محاسبه درصد چربی بدن
          </button> 
-           
+        <div style="width:200px;height:200px">
+         <div  id="gaugeid" #gaugeid>
+             Body Fat
+     </div>
+     </div>
      </ion-view>
 </ion-content> 

@@ -38,7 +38,7 @@ var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 var copyScripts = require('ionic-gulp-scripts-copy');
 var paths = {
-  scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
+  scripts: ['client/js/**/*.coffee', 'client/js/*.js', '!client/external/**/*.coffee'],
   images: 'resources/img/*'
 };
 gulp.task('watch', ['clean'], function(done){
@@ -68,14 +68,31 @@ gulp.task('build', ['clean'], function(done){
     }
   );
 });
-gulp.task('sass', buildSass);
-gulp.task('html', copyHTML);
+
 function myCopyFonts()
 {
-  copyFonts({src:'resources/fonts/*',dest:'www/build/fonts'});
-}
+  copyFonts({src:['resources/fonts/*','node_modules/ionic-angular/fonts/**/*.+(ttf|woff|woff2)'],dest:'www/build/fonts'});
+};
+function myCopyScripts()
+{
+  copyScripts({src:[
+  'node_modules/es6-shim/es6-shim.min.js',
+  'node_modules/angular2/bundles/angular2-polyfills.js',
+  'node_modules/gauge.js/dist/gauge.js',
+   'node_modules/jquery/dist/jquery.js'
+    
+  ]})
+};
+function myBuildSaas()
+{
+  buildSass({src:['app/theme/app.+(ios|md|wp).scss',
+  'node_modules/gauge.js/dist/gauge.css'
+  ]});
+};
+gulp.task('sass', myBuildSaas);
+gulp.task('html', copyHTML);
 gulp.task('fonts', myCopyFonts);
-gulp.task('scripts', copyScripts);
+gulp.task('scripts', myCopyScripts);
 
 gulp.task('clean', function(){
   return del('www/build');

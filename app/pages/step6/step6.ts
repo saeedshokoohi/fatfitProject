@@ -2,6 +2,7 @@ import {Page, NavController,Loading, NavParams} from 'ionic-angular';
 import {Utility} from '../../services/utility';
 import {MeasureUtil} from '../../services/measureUtil';
 import {DataModel} from '../../model/DataModel';
+import {BodyResult} from '../../model/bodyResult';
 import {NgIf} from 'angular2/common'
 import {FORM_DIRECTIVES} from 'angular2/common';
 
@@ -15,7 +16,7 @@ import {FORM_DIRECTIVES} from 'angular2/common';
 export class Step6 {
  
  public data:DataModel;
- public bodyFatPercent:string;
+ public bodyResult:BodyResult;
      constructor(private utility: Utility, 
                  private measureUtil:MeasureUtil,
                 private nav: NavController, 
@@ -28,10 +29,10 @@ debugger;
   }
   calculate()
   {
-   this.data.bodyfat= this.measureUtil.measureBodyFat(this.data);
+   this.bodyResult= this.measureUtil.measureBodyFat(this.data);
    this.presentLoading() ;
    
-   this.bodyFatPercent=this.data.bodyfat+" % ";
+  
    
   }
   presentLoading() {
@@ -41,6 +42,9 @@ debugger;
     
   });
   this.nav.present(loading);
+   loading.onDismiss(() => {
+    console.log('Dismissed loading');
+  });
 }
    
 }
