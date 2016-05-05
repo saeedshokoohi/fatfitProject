@@ -1,32 +1,37 @@
 <ion-navbar *navbar>
-    <ion-title class="titlebar">
-  اندازه دور گردن
-    </ion-title>
+  <ion-title class="titlebar">
+  مشاهده نتیجه
+  </ion-title>
 </ion-navbar>
 
 <ion-content class="home">
-  <div class="image body-fat-ranges-adultsimage " ></div>
-  
-            <br>
-            <br>
-            <br>
 
-            <!--STEP 3-->
 
-           
-  
-     
-             <button large (click)="calculate()" >
+
+
+  <button *ngIf="before" large (click)="calculate()">
             <!--<img src="/build/img/female.png" >-->
             <!--<ion-icon name="ion-arrow-right-b" />-->
-محاسبه چربی بدن      
+مشاهده نتیجه     
+    </button >
+      <button  *ngIf="!before"  large (click)="gohome()">
+            <!--<img src="/build/img/female.png" >-->
+            <!--<ion-icon name="ion-arrow-right-b" />-->
+محاسبه مجدد 
     </button>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <div style="font-size:30px ; border : solid 1px #red ; margin:10px ">
- {{bodyFatPercent.fatPercentage}}
- </div>
-         
+    <div >
+  <div style="width:300px;height:300px;">
+    <div id="gaugeid" style="padding:10px" >
+   
+    </div>
+    <div   style="width:100%;text-align:center">
+      <div style="width:300px;height:100px ;border-width: 0px;border-style: solid ; border-color: {{fatColor}}">
+        در صد چربی
+        <p style="font-size:20px;color:{{fatColor}};text-align:center">
+          {{fat}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 </ion-content>

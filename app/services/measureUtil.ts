@@ -9,13 +9,32 @@ export
  * MeasureUtil
  */
 class MeasureUtil {
+  public  fatGroups:any;
     constructor() {
+                         // LEAN
+                        //   stroke: rgb(255,217,85);
+                         // IDEAL
+                        //   stroke: rgb(51,200,55);
+                         // AVERAGE
+                        //   stroke: rgb(255,135,55);
+                         // OVERFAT
+                        //   stroke: rgb(230,0,00);
+
+                       
+                       
+          this.fatGroups=[
+                       {groupnumber:1,name:"LEAN",color:"rgb(255,217,85)"},
+                       {groupnumber:2,name:"IDEAL",color:"rgb(51,200,55)"},
+                       {groupnumber:3,name:"AVERAGE",color:"rgb(255,135,55)"},
+                       {groupnumber:4,name:"OVERFAT",color:"rgb(230,0,0)"},
+                       ]; 
         
     };
     
    public  measureBodyFat(data:DataModel):BodyResult
     {
         let result:BodyResult;
+        result=new BodyResult();
         var ageGroups=[
                        {groupnumber:1, min:0,max:20},
                        {groupnumber:2, min:21,max:25},
@@ -27,12 +46,11 @@ class MeasureUtil {
                        {groupnumber:8, min:51,max:55},
                        {groupnumber:9, min:56,max:120}
                        ];
-        var fatGroups=[
-                       {groupnumber:1,name:"LEAN"},
-                       {groupnumber:2,name:"IDEAL"},
-                       {groupnumber:3,name:"AVERAGE"},
-                       {groupnumber:4,name:"OVERFAT"},
-                       ];               
+                       
+
+                      
+
+                   
         var bodyFatForMan=[ 
             {ageGroup:1,list:[{fatGroup:1,from:2,to:8},{fatGroup:2,from:8,to:14},{fatGroup:3,from:14,to:21},{fatGroup:4,from:21,to:25}]},
             {ageGroup:2,list:[{fatGroup:1,from:3,to:10},{fatGroup:2,from:10,to:15},{fatGroup:3,from:15,to:22},{fatGroup:4,from:23,to:26}]},
@@ -78,9 +96,9 @@ class MeasureUtil {
         else
         targetGroup=bodyFatForWoman.find(function(el){return el.ageGroup==myGroupAge[0].groupnumber});
         
-       var finalPlace= targetGroup.list.filter(function(el){return el.from<result && el.to>=result});
+       var finalPlace= targetGroup.list.find(function(el){return el.from<result.fatPercentage && el.to>=result.fatPercentage});
        result.bodyGroup=targetGroup;;
-       var finalroup= fatGroups.find(function(el){return el.groupnumber==finalPlace.fatGroup});
+       var finalroup= this.fatGroups.find(function(el){return el.groupnumber==finalPlace.fatGroup});
         result.fatStatusDescription=finalroup.name;
         return result;
         
