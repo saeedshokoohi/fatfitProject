@@ -10,35 +10,35 @@ import {DataModel} from '../../model/DataModel';
 
 @Page({
     templateUrl: 'build/pages/home/home.html',
-    providers: [Utility, ElementRef]
+    providers: [Utility, ElementRef,DataModel]
 })
 export class HomePage {
 
 
 
-    constructor(private nav: NavController, gaugeid: ElementRef) {
+    constructor(private nav: NavController) {
         this.nav = nav;
 
     }
-    goto6()
-    {
-         try {
-            console.log('goto called');
-            var data = new DataModel();
-            data.name = 'user1';
-            data.step = 1;
-            data.age=28;
-            data.gender=false;
-            data.height=160;
-            data.hip=95;
-            data.neck=35;
-            data.waist=82;
-            data.weight=56;
-            this.nav.push(Step6, { data: data });
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    // goto6()
+    // {
+    //      try {
+    //         console.log('goto called');
+    //         var data = new DataModel();
+    //         data.name = 'user1';
+    //         data.step = 1;
+    //         data.age=28;
+    //         data.gender=false;
+    //         data.height=160;
+    //         data.hip=95;
+    //         data.neck=35;
+    //         data.waist=82;
+    //         data.weight=56;
+    //         this.nav.push(Step6, { data: data });
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
     gotonextpage() {
 
         try {

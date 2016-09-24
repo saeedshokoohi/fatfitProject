@@ -5,7 +5,7 @@ import {DataModel} from '../../model/DataModel';
 import {BodyResult} from '../../model/bodyResult';
 import {NgIf} from 'angular2/common'
 import { ElementRef, ViewChild} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
+
 import {HomePage} from '../home/home';
 
 
@@ -14,16 +14,18 @@ declare var jQuery: any;
 @Page({
   templateUrl: 'build/pages/step6/step6.html',
   providers:[Utility,MeasureUtil,BodyResult,DataModel],
-  directives:[NgIf,FORM_DIRECTIVES]
+  directives:[NgIf]
   
 })
 export class Step6 {
     public gaugeHtml: any;
     public fat: any;
+    public msg:any;
+    public fatMessage:any;
     public fatColor:any;
     public before:boolean;
-    @ViewChild('gaugeid')
-    gaugeid: ElementRef;
+     @ViewChild('gaugeid')
+     gaugeid: ElementRef;
  
  public data:DataModel;
  public bodyResult:BodyResult;
@@ -31,7 +33,7 @@ export class Step6 {
                  private measureUtil:MeasureUtil,
                 private nav: NavController, 
                 private navParams: NavParams) {
-
+debugger;
 this.before=true;
         this.data = navParams.get('data');
         
@@ -48,10 +50,12 @@ this.before=true;
    this.bodyResult.bodyGroup['list'][2].to,
    this.bodyResult.fatPercentage,"gaugeid"
    );
-   
+ 
+   this.msg='';
     }catch(e)
     {
-      console.log(e);
+      this.msg='مقادیر وارد شده معتبر نیست! یکبار دیگر عدد های وارد شده را چک کنید.';
+     this. before=true;
     }
   }
    makeGauge() {
@@ -65,9 +69,9 @@ this.before=true;
         var normalValue = normalPercentage * (100 / 40);
         var warningValue = warningPercentage * (100 / 40);
         var dangerValue = dangerPercentage * (100 / 40);
-   
+      
         var g = new Gauge({
-            block: document.getElementById(elementid),
+            block: this.gaugeid.nativeElement,
             actualValue: 0,
             labels: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40],
             // labels: [0,10,20,40,50],
@@ -78,21 +82,27 @@ this.before=true;
         setTimeout(function() {
              g.setValue(actualValue);
         }, 200);
-       
+        
+     //  this.gaugeid.nativeElement.innerHTML=actualValue;
         debugger;
         var ti=(Number(actualValue)/0.2);
         var interVvalTicks=5000/ti;
         var tempfat=0;
+        var i=0;
       var interval=  setInterval(()=>{
             tempfat=tempfat+0.2;
           this.fat= this.roundToPercent(tempfat);
           this.fatColor=this.getFatColor(normalPercentage, warningPercentage, dangerPercentage,tempfat);
-            if(tempfat>actualValue)
+            if(tempfat>=actualValue)
             {
                 tempfat=actualValue;
-                 this.fat= this.roundToPercent(tempfat)
-                clearInterval(interval)}
+                 this.fat= this.roundToPercent(tempfat);
+                  this.fatMessage=this.getFatMessage(normalPercentage, warningPercentage, dangerPercentage,tempfat);
+                clearInterval(interval);
+              }
+                
         },interVvalTicks);
+       
         
         
 
@@ -109,8 +119,21 @@ this.before=true;
         
         return retColor;
     }
+     getFatMessage(normalPercentage, warningPercentage, dangerPercentage,currentValue)
+    {
+        var retMessage  =this.measureUtil.fatGroups[3].message;
+        if(currentValue<dangerPercentage)
+        retMessage=this.measureUtil.fatGroups[2].message;
+         if(currentValue<warningPercentage)
+        retMessage=this.measureUtil.fatGroups[1].message;
+         if(currentValue<normalPercentage)
+        retMessage=this.measureUtil.fatGroups[0].message;
+        
+        return retMessage;
+    }
     gohome()
     {
+      this.before=true;
         this.nav.push(HomePage);
     }
     roundToPercent(tempfat)

@@ -23,10 +23,10 @@ class MeasureUtil {
                        
                        
           this.fatGroups=[
-                       {groupnumber:1,name:"LEAN",color:"rgb(255,217,85)"},
-                       {groupnumber:2,name:"IDEAL",color:"rgb(51,200,55)"},
-                       {groupnumber:3,name:"AVERAGE",color:"rgb(255,135,55)"},
-                       {groupnumber:4,name:"OVERFAT",color:"rgb(230,0,0)"},
+                       {groupnumber:1,name:"LEAN",color:"rgb(255,217,85)",message:"این درصد چربی یک ورزشکار است. اما اگر ورزشکار نیستید. درصد چربی بهتر است کمی بالاتر باشد!"},
+                       {groupnumber:2,name:"IDEAL",color:"rgb(51,200,55)",message:"درصد چربی شما ایده آل است. متناسب هستید"},
+                       {groupnumber:3,name:"AVERAGE",color:"rgb(255,135,55)",message:"درصد چربی شما بالاتر از حد ایده آل است. اما خطرناک نیست. "},
+                       {groupnumber:4,name:"OVERFAT",color:"rgb(230,0,0)",message:"درصد چربی شما بسیار بالاست. برای حفظ سلامتی باید وزن خود را کاهش دهید."}
                        ]; 
         
     };
